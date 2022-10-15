@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
 public class ones {
@@ -32,7 +33,7 @@ public class ones {
                 .filter(e -> e % 2 == 1)
                 .filter(e -> e % 5 != 0)
                 .mapToObj(e -> new BigInteger(String.valueOf(e)))
-                .toList();
+                .collect(Collectors.toList());
 
         for (BigInteger number : numberList) {
             for (var entry : entries) {
