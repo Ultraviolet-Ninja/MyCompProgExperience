@@ -1,1 +1,1 @@
-# CompetitiveProgrammingProbs
+# Competitive Programming Problems
