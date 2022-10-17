@@ -9,27 +9,80 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class countingtriangles {
-    private static final int X1 = 0, Y1 = 1, X2 = 2, Y2 = 3;
+    private static final byte[] NEWLINE = "\n".getBytes();
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in));
     private static final OutputStream OUT = new BufferedOutputStream(System.out);
 
     public static void main(String[] args) throws IOException {
         int lineCount = Integer.parseInt(IN.readLine());
-        List<List<Line>> lineSetsList = new ArrayList<>();
-        List<Line> line = new ArrayList<>();
+        List<Line[]> lineSetsList = new ArrayList<>();
+        Line[] lines = new Line[lineCount];
 
+        //Gathering all inputs
         while (lineCount != 0) {
             for (int i = 0; i < lineCount; i++) {
-                line.add(new Line(IN.readLine().split(" ")));
+                lines[i] = new Line(IN.readLine().split(" "));
             }
-            lineSetsList.add(line);
-            line.clear();
             lineCount = Integer.parseInt(IN.readLine());
+            lineSetsList.add(lines);
+            lines = new Line[lineCount];
         }
 
 
+        for (var lineSet : lineSetsList) {
+            int counter = 0;
+            //Calculating the indexes for combinations
+            List<int[]> combinationIndexes = generateCombinationIndexes(lineSet.length);
+
+            //Iterating all combinations to see if those lines intersect with each other
+            for (int[] combo : combinationIndexes) {
+                if (lineSet[combo[0]].doesIntersect(lineSet[combo[1]]) &&
+                        lineSet[combo[0]].doesIntersect(lineSet[combo[2]]) &&
+                        lineSet[combo[2]].doesIntersect(lineSet[combo[1]])) {
+                    counter++;
+                }
+            }
+            OUT.write(String.valueOf(counter).getBytes());
+            OUT.write(NEWLINE);
+        }
+
+        OUT.flush();
     }
 
+    /**
+     *
+     * @param n
+     * @return
+     */
+    private static List<int[]> generateCombinationIndexes(int n) {
+        List<int[]> combinations = new ArrayList<>();
+        int[] combination = new int[3];
+
+        // initialize with lowest lexicographic combination
+        for (int i = 0; i < 3; i++) {
+            combination[i] = i;
+        }
+
+        while (combination[2] < n) {
+            combinations.add(combination.clone());
+
+            // generate next combination in lexicographic order
+            int t = 2;
+            while (t != 0 && combination[t] == n - 3 + t) {
+                t--;
+            }
+            combination[t]++;
+            for (int i = t + 1; i < 3; i++) {
+                combination[i] = combination[i - 1] + 1;
+            }
+        }
+
+        return combinations;
+    }
+
+    /**
+     *
+     */
     private static class Line {
         private final double x1, y1, x2, y2;
 
@@ -38,6 +91,33 @@ public class countingtriangles {
             y1 = Double.parseDouble(array[1]);
             x2 = Double.parseDouble(array[2]);
             y2 = Double.parseDouble(array[3]);
+        }
+
+        /**
+         *
+         * @param value1
+         * @param value2
+         * @param value3
+         * @param value4
+         * @param value5
+         * @param value6
+         * @return
+         */
+        private static boolean ccw(double value1, double value2, double value3,
+                                   double value4, double value5, double value6) {
+            return (value6 - value2) * (value3 - value1) > (value4 - value2) * (value5 - value1);
+        }
+
+        /**
+         *
+         * @param other
+         * @return
+         */
+        public boolean doesIntersect(Line other) {
+            return ccw(this.x1, this.y1, other.x1, other.y1, other.x2, other.y2) !=
+                    ccw(this.x2, this.y2, other.x1, other.y1, other.x2, other.y2) &&
+                    ccw(this.x1, this.y1, this.x2, this.y2, other.x1, other.y1) !=
+                            ccw(this.x1, this.y1, this.x2, this.y2, other.x2, other.y2);
         }
     }
 }
