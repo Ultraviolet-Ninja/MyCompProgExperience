@@ -50,7 +50,7 @@ public class countingtriangles {
     }
 
     /**
-     *
+     * Code cited here: <a href="https://www.baeldung.com/java-combinations-algorithm">...</a>
      * @param n
      * @return
      */
@@ -94,6 +94,7 @@ public class countingtriangles {
         }
 
         /**
+         * Code cited here: <a href="https://bryceboe.com/2006/10/23/line-segment-intersection-algorithm/">...</a>
          *
          * @param value1
          * @param value2
@@ -109,6 +110,7 @@ public class countingtriangles {
         }
 
         /**
+         * Code cited here: <a href="https://bryceboe.com/2006/10/23/line-segment-intersection-algorithm/">...</a>
          *
          * @param other
          * @return
