@@ -11,6 +11,7 @@ public class kleptography {
     private static final OutputStream OUT = new BufferedOutputStream(System.out);
 
     public static void main(String[] args) throws IOException {
+        //Grabbing the letter counts
         String[] letterCounts = IN.readLine().split(" ");
         int keyWordLetterCount = Integer.parseInt(letterCounts[0]);
         int cipherTextLetterCount = Integer.parseInt(letterCounts[1]);
