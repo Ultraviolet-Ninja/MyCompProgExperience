@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.HashSet;
-import java.util.Set;
 
 public class reseto {
     private static final StringBuilder BUFFER = new StringBuilder();
@@ -19,13 +17,13 @@ public class reseto {
         int n = Integer.parseInt(line[0]);
         int k = Integer.parseInt(line[1]);
 
-        Set<Integer> crossOuts = new HashSet<>(n);
+        int[] crossOuts = new int[n+1];
 
         for (int trial = 2; trial <= n; trial++) {
-            if (isPrime(trial)) {
+            if (crossOuts[trial] == 0) {
                 for (int i = trial; i <= n; i += trial) {
-                    if (!crossOuts.contains(i)) {
-                        crossOuts.add(i);
+                    if (crossOuts[i] == 0) {
+                        crossOuts[i] = i;
                         k--;
                     }
                     if (k == 0) {
@@ -38,22 +36,22 @@ public class reseto {
         }
     }
 
-    private static boolean isPrime(int n) {
-        if (n <= 3) {
-            return n > 1;
-        }
-
-        if (n % 2 == 0 || n % 3 == 0) {
-            return false;
-        }
-
-        int stop = (int) Math.sqrt(n);
-
-        for (int i = 5; i < stop; i+= 6) {
-            if (n % i == 0 || n % (i + 2) == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
+//    private static boolean isPrime(int n) {
+//        if (n <= 3) {
+//            return n > 1;
+//        }
+//
+//        if (n % 2 == 0 || n % 3 == 0) {
+//            return false;
+//        }
+//
+//        int stop = (int) Math.sqrt(n);
+//
+//        for (int i = 5; i < stop; i+= 6) {
+//            if (n % i == 0 || n % (i + 2) == 0) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 }
