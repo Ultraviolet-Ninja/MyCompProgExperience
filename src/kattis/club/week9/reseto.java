@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.IntStream;
 
 public class reseto {
     private static final StringBuilder BUFFER = new StringBuilder();
@@ -22,18 +21,18 @@ public class reseto {
 
         Set<Integer> crossOuts = new HashSet<>(n);
 
-        int[] primes = IntStream.rangeClosed(2, n).filter(reseto::isPrime).toArray();
-
-        for (int prime : primes) {
-            for (int i = prime; i <= n; i += prime) {
-                if (!crossOuts.contains(i)) {
-                    crossOuts.add(i);
-                    k--;
-                }
-                if (k == 0) {
-                    OUT.write(BUFFER.append(i).append("\n").toString().getBytes());
-                    OUT.flush();
-                    return;
+        for (int trial = 2; trial <= n; trial++) {
+            if (isPrime(trial)) {
+                for (int i = trial; i <= n; i += trial) {
+                    if (!crossOuts.contains(i)) {
+                        crossOuts.add(i);
+                        k--;
+                    }
+                    if (k == 0) {
+                        OUT.write(BUFFER.append(i).append("\n").toString().getBytes());
+                        OUT.flush();
+                        return;
+                    }
                 }
             }
         }
