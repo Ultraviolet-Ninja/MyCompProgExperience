@@ -15,8 +15,8 @@ import java.util.TreeSet;
 @TLE(url = "https://leetcode.com/problems/word-search-ii/")
 public class WordSearchII {
     public static void main(String[] args) {
-        char[][] board = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'}};
-        String[] testList = {"oath","pea","eat","rain"};
+        char[][] board = {{'o', 'a', 'a', 'n'}, {'e', 't', 'a', 'e'}, {'i', 'h', 'k', 'r'}};
+        String[] testList = {"oath", "pea", "eat", "rain"};
         runSearch(board, testList);
 
         board = new char[][]{{'a', 'b'}, {'c', 'd'}};
@@ -32,15 +32,15 @@ public class WordSearchII {
         long stop = System.nanoTime();
 
         System.out.println(list);
-        System.out.printf("%,d us\n", (stop - start)/1000);
+        System.out.printf("%,d us\n", (stop - start) / 1000);
     }
 
-    private static Trie trie;
+    private static Trie trie, antiPrefixTrie;
     private static int boardWidth, boardHeight, maxWordLength;
     private static final Set<String> FOUND_WORDS = new TreeSet<>(),
             DICTIONARY = new TreeSet<>();
 
-    private static final int[][] FOUR_WAY_VECTORS = new int[][]{{1,0}, {-1,0}, {0,1}, {0,-1}};
+    private static final int[][] FOUR_WAY_VECTORS = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     public List<String> findWords(char[][] board, String[] words) {
         if (words.length == 0) {
@@ -64,6 +64,7 @@ public class WordSearchII {
 
     private static void precompute(char[][] board, String[] words) {
         trie = new Trie(words);
+        antiPrefixTrie = new Trie();
         boardHeight = board.length;
         boardWidth = board[0].length;
         var tempList = Arrays.asList(words);
@@ -77,12 +78,17 @@ public class WordSearchII {
     }
 
     private static void searchRecursive(int x, int y, String word, Cell[][] grid, HashSet<Cell> visited) {
-        if (!trie.containsPrefix(word))
+        if (!trie.containsPrefix(word)) {
+            antiPrefixTrie.addWord(word);
+            return;
+        } else if (antiPrefixTrie.search(word))
             return;
 
         if (DICTIONARY.contains(word)) {
             FOUND_WORDS.add(word);
             DICTIONARY.remove(word);
+            trie.remove(word);
+            antiPrefixTrie.addWord(word);
         }
 
         if (word.length() == maxWordLength)
@@ -156,6 +162,7 @@ public class WordSearchII {
             return x == o.x && y == o.y && c == o.c;
         }
     }
+
     private static class Trie {
         private final TrieNode root;
 
@@ -170,28 +177,23 @@ public class WordSearchII {
             }
         }
 
-        public void addWord(final String word) {
-            addWord(word, 0, word.length(), root);
-        }
-
-        private static void addWord(final String word, int index, final int wordLength, TrieNode currentNode) {
-            if (index == wordLength) {
-                currentNode.isEndOfWord = true;
+        public void addWord(String word) {
+            if (word == null || word.isEmpty())
                 return;
+            TrieNode currentNode = root;
+
+            for (char c : word.toCharArray()) {
+                if (!currentNode.children.containsKey(c))
+                    currentNode.addConnection(c);
+
+                currentNode = currentNode.children.get(c);
             }
-            char nextChar = word.charAt(index);
-
-            if (!currentNode.children.containsKey(nextChar))
-                currentNode.addConnection(nextChar);
-
-            addWord(word, index + 1, wordLength, currentNode.children.get(nextChar));
+            currentNode.isEndOfWord = true;
         }
 
         public boolean containsPrefix(String prefix) {
             if (prefix == null || prefix.isEmpty())
                 return false;
-            prefix = prefix.toLowerCase();
-
             TrieNode currentNode = root;
 
             for (char c : prefix.toCharArray()) {
@@ -200,6 +202,53 @@ public class WordSearchII {
                 currentNode = currentNode.children.get(c);
             }
             return true;
+        }
+
+        public boolean search(String word) {
+            if (word == null || word.isEmpty())
+                return false;
+
+            TrieNode currentNode = root;
+            for (char letter : word.toCharArray()) {
+                currentNode = currentNode.children.get(letter);
+                if (currentNode == null)
+                    return false;
+            }
+            return currentNode.isEndOfWord;
+        }
+
+        public void remove(String word) {
+            if (word == null || word.isEmpty())
+                return;
+            remove(word, 0, word.length(), root);
+        }
+
+        private static boolean remove(String word, int index, final int wordLength, TrieNode node) {
+            if (index + 1 == wordLength) {
+                char letter = word.charAt(index);
+                TrieNode last = node.children.get(letter);
+                if (last.children.isEmpty()) {
+                    node.children.remove(letter);
+                    return true;
+                } else {
+                    last.isEndOfWord = false;
+                    return false;
+                }
+            }
+            char letter = word.charAt(index);
+            TrieNode next = node.children.get(letter);
+
+            if (next == null) {
+                return false;
+            }
+
+            boolean callback = remove(word, index + 1, wordLength, next);
+            if (callback && next.children.isEmpty()) {
+                node.children.remove(letter);
+                return true;
+            }
+
+            return false;
         }
 
         private static class TrieNode {

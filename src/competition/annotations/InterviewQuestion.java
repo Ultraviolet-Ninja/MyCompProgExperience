@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Unattempted {
-    String url() default "No URL";
+public @interface InterviewQuestion {
+    String company();
 }
