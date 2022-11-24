@@ -4,6 +4,7 @@ import competition.annotations.Done;
 import competition.annotations.SolutionReference;
 
 import java.util.List;
+import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,12 @@ public class LonelyInteger {
         System.out.println("Second XOR solution: " + xorSolution2(test1));
         System.out.println("Second XOR solution: " + xorSolution2(test2));
         System.out.println("Second XOR solution: " + xorSolution2(test3));
+
+        System.out.println();
+
+        System.out.println("Array Solution: " + arraySolution(test1));
+        System.out.println("Array Solution: " + arraySolution(test2));
+        System.out.println("Array Solution: " + arraySolution(test3));
     }
 
     public static int countingSolution(List<Integer> a) {
@@ -55,6 +62,22 @@ public class LonelyInteger {
     }
 
     public static int xorSolution2(List<Integer> a) {
-        return a.stream().mapToInt(e -> e).reduce((i, j) -> i ^ j).getAsInt();
+        return a.stream().reduce((i, j) -> i ^ j).get();
+    }
+
+    public static int arraySolution(List<Integer> a) {
+        int[] fullArray = new int[101];
+        TreeSet<Integer> insertedInts = new TreeSet<>(a);
+
+        for (int i : a) {
+            fullArray[i]++;
+        }
+
+        for (int i : insertedInts) {
+            if (fullArray[i] == 1) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
