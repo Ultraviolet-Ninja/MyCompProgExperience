@@ -1,6 +1,8 @@
 package competition.kattis.club.fall22.week4;
 
 import competition.annotations.Incorrect;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -12,6 +14,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@SiteType(type = Website.KATTIS)
 @Incorrect(url = "https://open.kattis.com/problems/chewbacca")
 public class chewbacca {
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in));

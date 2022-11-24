@@ -1,6 +1,8 @@
 package competition.kattis.club.fall22.week6;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -9,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
+@SiteType(type = Website.KATTIS)
 @Done(url = "https://open.kattis.com/problems/cd")
 public class cd3 {
     private static final StringBuilder BUFFER = new StringBuilder();

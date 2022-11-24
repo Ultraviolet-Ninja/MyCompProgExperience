@@ -1,6 +1,8 @@
 package competition.kattis.hobby.pt;
 
 import competition.annotations.Incorrect;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+@SiteType(type = Website.KATTIS)
 @Incorrect(url = "https://open.kattis.com/problems/shoppingmalls")
 public class shoppingmalls {
     private static final StringBuilder BUFFER = new StringBuilder();

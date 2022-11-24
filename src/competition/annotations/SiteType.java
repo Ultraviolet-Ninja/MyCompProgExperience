@@ -6,15 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Denotes an attempted problem that took too long (Time Limit Exceeded)
+ * Denotes the website the problem was found on
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface TLE {
+public @interface SiteType {
     /**
-     * An optional string denoting the original location the problem was found
-     *
-     * @return The URL to the problem
+     * @return The website the problem
      */
-    String url() default "No URL";
+    Website type();
 }

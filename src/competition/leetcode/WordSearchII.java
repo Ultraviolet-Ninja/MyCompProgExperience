@@ -1,6 +1,8 @@
 package competition.leetcode;
 
+import competition.annotations.SiteType;
 import competition.annotations.TLE;
+import competition.annotations.Website;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
+@SiteType(type = Website.LEETCODE)
 @TLE(url = "https://leetcode.com/problems/word-search-ii/")
 public class WordSearchII {
     public static void main(String[] args) {

@@ -1,6 +1,8 @@
 package competition.kattis.the_class.lab3;
 
 import competition.annotations.Incorrect;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -11,6 +13,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
+@SiteType(type = Website.KATTIS)
 @Incorrect(url = "https://open.kattis.com/problems/guessthedatastructure")
 public class guessthedatastructure {
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in));

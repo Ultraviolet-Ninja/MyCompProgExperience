@@ -1,6 +1,8 @@
 package competition.kattis.the_class.lab4;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -12,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+@SiteType(type = Website.KATTIS)
 @Done(url = "https://open.kattis.com/problems/hidingplaces")
 public class hidingplaces {
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in));

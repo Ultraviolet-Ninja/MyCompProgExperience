@@ -1,13 +1,16 @@
 package competition.hackerrank;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
 import competition.annotations.SolutionReference;
+import competition.annotations.Website;
 
 import java.util.List;
 import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@SiteType(type = Website.HACKERRANK)
 @Done(url = "https://www.hackerrank.com/challenges/lonely-integer/problem")
 @SolutionReference(url = "https://stackoverflow.com/questions/70756228/find-the-odd-integer-js-fundamentals-logic")
 public class LonelyInteger {

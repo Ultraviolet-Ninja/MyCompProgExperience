@@ -2,13 +2,16 @@ package competition.hackerrank;
 
 import competition.annotations.Done;
 import competition.annotations.InterviewQuestion;
+import competition.annotations.SiteType;
 import competition.annotations.SolutionReference;
+import competition.annotations.Website;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Done
+@SiteType(type = Website.HACKERRANK)
 @InterviewQuestion(companies = "JP Morgan Chase")
 @SolutionReference(url = "https://www.geeksforgeeks.org/minimum-number-of-distinct-elements-after-removing-m-items/")
 public class SellingProducts {

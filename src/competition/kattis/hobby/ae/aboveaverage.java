@@ -1,6 +1,8 @@
 package competition.kattis.hobby.ae;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -9,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Arrays;
 
+@SiteType(type = Website.KATTIS)
 @Done(url = "https://open.kattis.com/problems/aboveaverage")
 public class aboveaverage {
     private static final StringBuilder BUFFER = new StringBuilder();

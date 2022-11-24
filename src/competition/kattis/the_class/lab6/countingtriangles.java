@@ -1,6 +1,8 @@
 package competition.kattis.the_class.lab6;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -10,6 +12,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@SiteType(type = Website.KATTIS)
 @Done(url = "https://open.kattis.com/problems/countingtriangles")
 public class countingtriangles {
     private static final byte[] NEWLINE = "\n".getBytes();

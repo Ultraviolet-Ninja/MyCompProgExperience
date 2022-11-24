@@ -1,6 +1,8 @@
 package competition.kattis.club.fall22.week6;
 
+import competition.annotations.SiteType;
 import competition.annotations.TLE;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -10,6 +12,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+@SiteType(type = Website.KATTIS)
 @TLE(url = "https://open.kattis.com/contests/vego4q/problems/phonelist")
 public class phonelist {
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in));

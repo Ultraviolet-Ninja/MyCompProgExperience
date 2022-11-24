@@ -1,12 +1,15 @@
 package competition.kattis.the_class.lab9;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+@SiteType(type = Website.KATTIS)
 @Done(url = "https://open.kattis.com/problems/supercomputer")
 public class supercomputer5 {
     private static final StringBuilder BUFFER = new StringBuilder();

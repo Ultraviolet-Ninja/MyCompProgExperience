@@ -2,9 +2,12 @@ package competition.hackerrank;
 
 import competition.annotations.Done;
 import competition.annotations.InterviewQuestion;
+import competition.annotations.SiteType;
 import competition.annotations.SolutionReference;
+import competition.annotations.Website;
 
 @Done
+@SiteType(type = Website.HACKERRANK)
 @InterviewQuestion(companies = "JP Morgan Chase")
 @SolutionReference(url = "https://www.geeksforgeeks.org/maximum-index-a-pointer-can-reach-in-n-steps-by-avoiding-a-given-index-b/")
 public class MaximumIndex {

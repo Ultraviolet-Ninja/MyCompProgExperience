@@ -1,6 +1,8 @@
 package competition.kattis.the_class.lab9;
 
+import competition.annotations.SiteType;
 import competition.annotations.TLE;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -8,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+@SiteType(type = Website.KATTIS)
 @TLE(url = "https://open.kattis.com/problems/supercomputer")
 public class supercomputer3 {
     private static final StringBuilder BUFFER = new StringBuilder();
