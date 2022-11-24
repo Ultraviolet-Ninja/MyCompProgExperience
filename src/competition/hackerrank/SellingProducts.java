@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Done
-@InterviewQuestion(company = "JP Morgan Chase")
+@InterviewQuestion(companies = "JP Morgan Chase")
 @SolutionReference(url = "https://www.geeksforgeeks.org/minimum-number-of-distinct-elements-after-removing-m-items/")
 public class SellingProducts {
     /*

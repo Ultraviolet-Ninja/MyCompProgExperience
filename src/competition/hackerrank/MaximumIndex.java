@@ -5,7 +5,7 @@ import competition.annotations.InterviewQuestion;
 import competition.annotations.SolutionReference;
 
 @Done
-@InterviewQuestion(company = "JP Morgan Chase")
+@InterviewQuestion(companies = "JP Morgan Chase")
 @SolutionReference(url = "https://www.geeksforgeeks.org/maximum-index-a-pointer-can-reach-in-n-steps-by-avoiding-a-given-index-b/")
 public class MaximumIndex {
     public static void main(String[] args) {
