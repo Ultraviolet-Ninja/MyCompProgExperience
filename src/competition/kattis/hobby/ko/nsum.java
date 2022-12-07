@@ -1,12 +1,15 @@
 package competition.kattis.hobby.ko;
 
 import competition.annotations.Done;
+import competition.annotations.SiteType;
+import competition.annotations.Website;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+@SiteType(type = Website.KATTIS)
 @SuppressWarnings("DuplicatedCode")
 @Done(url = "https://open.kattis.com/problems/nsum")
 public class nsum {

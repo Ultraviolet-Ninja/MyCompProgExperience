@@ -8,23 +8,28 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 @SiteType(type = Website.KATTIS)
-@Done(url = "https://open.kattis.com/problems/sorttwonumbers")
-public class sorttwonumbers {
-    private static final StringBuilder BUFFER = new StringBuilder();
+@Done(url = "https://open.kattis.com/problems/sifferprodukt")
+public class sifferprodukt {
     private static final BufferedReader IN = new BufferedReader(new InputStreamReader(System.in));
     private static final BufferedOutputStream OUT = new BufferedOutputStream(System.out);
 
     public static void main(String[] args) throws IOException {
-        int[] nums = Arrays.stream(IN.readLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
-        int a = nums[0];
-        int b = nums[1];
+        int number = Integer.parseInt(IN.readLine());
 
-        OUT.write(BUFFER.append(Math.min(a, b)).append(" ").append(Math.max(a, b)).toString().getBytes());
+        while (number > 9) {
+            int product = 1;
+            while (number > 0) {
+                int temp = number % 10;
+                if (temp != 0) {
+                    product *= temp;
+                }
+                number /= 10;
+            }
+            number = product;
+        }
+        OUT.write(String.valueOf(number).getBytes());
         OUT.flush();
     }
 }
